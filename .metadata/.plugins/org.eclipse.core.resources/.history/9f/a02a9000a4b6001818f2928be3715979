@@ -1,0 +1,5 @@
+package com.hithesh.model;
+
+public class User {
+
+}

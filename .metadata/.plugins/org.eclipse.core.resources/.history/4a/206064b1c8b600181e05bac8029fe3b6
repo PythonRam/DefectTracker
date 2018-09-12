@@ -1,0 +1,4 @@
+spring.datasource.url = jdbc:mysql://localhost:3306/defecttracker_defect
+spring.datasource.username= root
+server.port=9100
+eureka.client.service-url.defaultZone = http://localhost:8671/eureka/

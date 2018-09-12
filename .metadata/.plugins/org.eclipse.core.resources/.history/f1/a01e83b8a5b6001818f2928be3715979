@@ -1,0 +1,51 @@
+package com.hithesh.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="User")
+public class User {
+	@Id
+	private Integer custId;
+	
+	private String userName;
+	private String password;
+	private String userRole;
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public Integer getCustId() {
+		return custId;
+	}
+	public void setCustId(Integer custId) {
+		this.custId = custId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+	public User(String userName, Integer custId, String password, String userRole) {
+		super();
+		this.userName = userName;
+		this.custId = custId;
+		this.password = password;
+		this.userRole = userRole;
+	}
+	public User() {
+	}
+	
+	
+}

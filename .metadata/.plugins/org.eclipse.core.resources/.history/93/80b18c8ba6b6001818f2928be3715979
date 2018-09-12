@@ -1,0 +1,10 @@
+package com.hithesh.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+
+import com.hithesh.entity.User;
+
+public interface UserRepository extends JpaRepository<User, Integer>{
+	public User findUserRoleByUserNameAndPassword(@Param("userName") String userName, @Param("password") String password);
+}

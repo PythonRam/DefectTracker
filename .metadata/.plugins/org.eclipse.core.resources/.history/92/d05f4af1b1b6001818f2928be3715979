@@ -1,0 +1,5 @@
+package com.hithesh.entity;
+
+public class Defect {
+
+}

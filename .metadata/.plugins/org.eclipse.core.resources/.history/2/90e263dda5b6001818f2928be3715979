@@ -1,0 +1,5 @@
+package com.hithesh.repository;
+
+public interface UserRepository {
+
+}

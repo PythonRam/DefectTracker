@@ -1,0 +1,25 @@
+package com.hithesh.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Defect")
+public class Defect {
+	@Id
+	@Column(name="defect_id")
+	private Integer defectId;
+	
+	@Column(name="category")
+	private String category;
+	
+	@Column(name="chgstatus")
+	private String chgstatus;
+	
+	@Column(name="description")
+	private String description;
+	
+	
+}
