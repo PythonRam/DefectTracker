@@ -1,5 +1,0 @@
-package com.hithesh.repository;
-
-public interface DefectRepository {
-
-}
