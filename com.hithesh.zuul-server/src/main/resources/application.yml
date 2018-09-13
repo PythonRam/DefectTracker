@@ -15,7 +15,6 @@ zuul:
       service-id: DefectMS
     getDefects:
       path: /defects/getAllDefects
-      strip-prefix: false
       service-id: DefectMS
     updateDefects:
       path: /defects/updateDefect/*
