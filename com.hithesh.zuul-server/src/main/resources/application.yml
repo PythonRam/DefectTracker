@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ZuulServer
+
+server:
+  port: 9191
+
+zuul:
+  routes:
+    login:
+      path : /login/userDetails
+      service-id : LoginMS
+    addDefects:
+      path: /defects/addDefect
+      service-id: DefectMS
+    getDefects:
+      path: /defects/getAllDefects
+      strip-prefix: false
+      service-id: DefectMS
+    updateDefects:
+      path: /defects/updateDefect/*
+      service-id: DefectMS
+    

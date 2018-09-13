@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hithesh.DTO.LoginFormDTO;
 import com.hithesh.DTO.UserDetailsDTO;
 import com.hithesh.service.LoginService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 public class LoginController {
@@ -21,10 +22,15 @@ public class LoginController {
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
 	}
-
+	
+	@HystrixCommand(fallbackMethod="authenticateAndRespondFallback")
 	@RequestMapping(value = "/login/userDetails", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserDetailsDTO> authenticateAndRespond(@RequestBody LoginFormDTO loginForm) {
-		return new ResponseEntity<UserDetailsDTO>(
-				loginService.validateLogin(loginForm.getUsername(), loginForm.getPassword()), HttpStatus.OK);
+	public UserDetailsDTO authenticateAndRespond(@RequestBody LoginFormDTO loginForm) {
+		return loginService.validateLogin(loginForm.getUsername(), loginForm.getPassword());
 	}
+	
+	public UserDetailsDTO authenticateAndRespondFallback(@RequestBody LoginFormDTO loginForm) {
+		return new UserDetailsDTO();
+	}
+	
 }
