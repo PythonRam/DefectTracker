@@ -17,7 +17,7 @@ public class LoginService {
 	
 	public UserDetailsDTO validateLogin(String userName, String password) {
 		User user = userRepository.findByUserNameAndPassword(userName, password);
-		UserDetailsDTO response; 
+		UserDetailsDTO response = null; 
 		if(user==null) {
 			response = new UserDetailsDTO(false,"Invalid",null,"invalid");
 		}else {
