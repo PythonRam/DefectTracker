@@ -1,6 +1,11 @@
 spring:
   application:
     name: ZuulServer
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9300/        
 
 server:
   port: 9191
@@ -19,4 +24,6 @@ zuul:
     updateDefects:
       path: /defects/updateDefect/*
       service-id: DefectMS
+   
+
     
