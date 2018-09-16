@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hithesh.DTO.DefectFormDTO;
+import com.hithesh.DTO.DefectDTO;
 import com.hithesh.DTO.LoginFormDTO;
 import com.hithesh.entity.Defect;
 import com.hithesh.feign.DefectLoginFeign;
@@ -31,35 +31,38 @@ public class DefectController {
 	
 	@RequestMapping(value = "/defects/addDefect", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@HystrixCommand(fallbackMethod="addDefectFallback")
-	public Defect addDefect(@RequestBody DefectFormDTO defectForm) {
-		return defectService.addDefect(defectForm);
+	public List<DefectDTO> addDefect(@RequestBody DefectDTO defectForm) {
+		defectService.addDefect(defectForm);
+		return defectService.getAllDefects();
 	}
 	
 	@HystrixCommand(fallbackMethod="getAllDefectsFallback")
 	@RequestMapping(value="/defects/getAllDefects", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Defect> getAllDefects(){
+	public List<DefectDTO> getAllDefects(){
 //		System.out.println(feignClient.authenticateAndRespond(new LoginFormDTO("Bob", "dev@123")));
 		return defectService.getAllDefects();
 	}
 	
 	@HystrixCommand(fallbackMethod="updateDefectFallback")
 	@RequestMapping(value="/defects/updateDefect/{defectId}", method = RequestMethod.PUT)
-	public void updateDefect(@PathVariable("defectId") Integer defectId) {
+	public List<DefectDTO> updateDefect(@PathVariable("defectId") Integer defectId) {
 		defectService.closeDefect(defectId);
+		return defectService.getAllDefects();
 	}
 	
 // ***************	Fallbacks  **************************
 	
-	public Defect addDefectFallback(@RequestBody DefectFormDTO defectForm) {
-		return new Defect();
+	public List<DefectDTO> addDefectFallback(@RequestBody DefectDTO defectForm) {
+		return new ArrayList<DefectDTO>();
 	}
 	
-	public List<Defect> getAllDefectsFallback(){
-		return new ArrayList<Defect>();
+	public List<DefectDTO> getAllDefectsFallback(){
+		return new ArrayList<DefectDTO>();
 	}
 	
-	public void updateDefectFallback(@PathVariable("defectId") Integer defectId) {
+	public List<DefectDTO> updateDefectFallback(@PathVariable("defectId") Integer defectId) {
 		// void
+		return new ArrayList<DefectDTO>();
 	}
 	
 	

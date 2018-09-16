@@ -1,6 +1,14 @@
 package com.hithesh.DTO;
 
-public class DefectFormDTO {
+public class DefectDTO {
+	private Integer defectId;
+
+	public Integer getDefectId() {
+		return defectId;
+	}
+	public void setDefectId(Integer defectId) {
+		this.defectId = defectId;
+	}
 	private String defectCategory;
 	private String desc;
 	private Integer priority;
@@ -36,7 +44,7 @@ public class DefectFormDTO {
 	public void setChgStatus(String chgStatus) {
 		this.chgStatus = chgStatus;
 	}
-	public DefectFormDTO(String defectCategory, String desc, Integer priority, String status, String chgStatus) {
+	public DefectDTO(String defectCategory, String desc, Integer priority, String status, String chgStatus) {
 		super();
 		this.defectCategory = defectCategory;
 		this.desc = desc;
@@ -44,7 +52,17 @@ public class DefectFormDTO {
 		this.status = status;
 		this.chgStatus = chgStatus;
 	}
-	public DefectFormDTO() {
+	public DefectDTO(Integer defectId, String defectCategory, String desc, Integer priority, String status,
+			String chgStatus) {
+		super();
+		this.defectId = defectId;
+		this.defectCategory = defectCategory;
+		this.desc = desc;
+		this.priority = priority;
+		this.status = status;
+		this.chgStatus = chgStatus;
+	}
+	public DefectDTO() {
 		super();
 	}
 	

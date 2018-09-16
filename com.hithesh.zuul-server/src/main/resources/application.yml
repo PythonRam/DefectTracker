@@ -8,7 +8,7 @@ spring:
     base-url: http://localhost:9300/        
 
 server:
-  port: 9191
+  port: 8181
 
 zuul:
   routes:
@@ -23,6 +23,7 @@ zuul:
       service-id: DefectMS
     updateDefects:
       path: /defects/updateDefect/*
+      strip-prefix: false
       service-id: DefectMS
    
 
